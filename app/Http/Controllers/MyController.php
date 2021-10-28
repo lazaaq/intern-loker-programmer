@@ -31,17 +31,13 @@ class MyController extends Controller
             'active' => 'post'
         ]);
     }
-    public function search()
+    public function author(Request $request)
     {
-        return view('post/search',[
-
-        ]);
-    }
-    public function author()
-    {
+        $users = User::where('name', 'like', '%' . $request->name . '%')->get();
         return view('user/index', [
             'active' => 'author',
-            'authors' => User::all()
+            'authors' => $users,
+            's' => $request->name
         ]);
     }
     public function single_author(User $user)

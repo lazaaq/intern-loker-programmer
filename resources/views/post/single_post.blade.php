@@ -49,11 +49,21 @@
 				<!-- Begin Top Meta -->
 				<div class="row post-top-meta">
 					<div class="col-md-2">
-						<img src="{{$author->photo}}" alt="" width="100px" class="rounded-circle">
+						@if($author->photo != null)
+						<img src="{{$author->photo}}" width="100px" class="rounded-circle">
+						@else
+						<img src="/img/people/default.jpg" class="rounded-circle" width="100px">
+						@endif
 					</div>
 					<div class="col-md-10">
 						<a class="link-dark" href="/author/{{$post->user_id}}">{{$author->name}}</a>
+						<br>
+						@if($author->description != null)
 						<span class="author-description">{{$author->description}}</span>
+						@else
+						<span class="author-description">Tidak ada deskripsi</span>
+						@endif
+						<br>
 						<span class="post-date">{{$post->updated_at}}</span><span class="dot">
 					</div>
 				</div>

@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title'. 'Dashboard')
+@section('title', 'Dashboard')
 
 @section('css')
 <style>
@@ -47,7 +47,7 @@
 
 @section('heading')
 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-    {{ Auth::user()->name }}'s Dashboard
+    {{ $user->name }}'s Dashboard
 </h2>
 @endsection
 

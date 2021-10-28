@@ -26,7 +26,11 @@
                         <div class="sociallinks"><a target="_blank" href="https://www.facebook.com/wowthemesnet/"><i class="fa fa-facebook"></i></a> <span class="dot"></span> <a target="_blank" href="https://plus.google.com/s/wowthemesnet/top"><i class="fa fa-google-plus"></i></a></div>
                     </div>
                     <div class="col-md-2 col-xs-12 d-flex align-items-start">
-                        <img class="rounded-circle" src="{{$author->photo}}" alt="Photo Author" width="100px">
+                        @if($author->photo != null)
+                        <img class="rounded-circle" src="{{$author->photo}}" width="100px">
+                        @else
+                        <img class="rounded-circle" src="/img/people/default.jpg" width="100px">
+                        @endif
                     </div>
                 </div>
             </div>
@@ -45,7 +49,7 @@
             <!-- begin post -->
             <div class="authorpostbox">
                 <div class="card">
-                    <a href="/author/{{$author->id}}">
+                    <a href="/post/{{$post->slug}}">
                         <img class="img-fluid img-thumb" src="{{asset($post->thumbnail)}}">
                     </a>
                     <div class="card-block">
@@ -58,7 +62,13 @@
                         <div class="metafooter">
                             <div class="wrapfooter">
                                 <span class="meta-footer-thumb">
-                                    <a href="/author/{{$author->id}}"><img class="author-thumb" src="{{$author->photo}}" alt="Sal"></a>
+                                    <a href="/author/{{$author->id}}">
+                                        @if($author->photo != null)
+                                        <img class="author-thumb" src="{{$author->photo}}" width="50px">
+                                        @else
+                                        <img class="author-thumb" src="/img/people/default.jpg" width="50px">
+                                        @endif
+                                    </a>
                                 </span>
                                 <span class="author-meta">
                                     <span class="post-name"><a href="/author/{{$author->id}}">{{ $author->name }}</a></span><br />

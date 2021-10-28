@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title'. 'Create Post')
+@section('title', 'Create Post')
 
 @section('css')
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -84,7 +84,7 @@
                         <label for="thumbnail" class="form-label">Thumbnail Post</label>
                         <br>
                         <img class="img-fluid mb-3 col-sm-5" id="imgPreview" style="display: none;">
-                        <input type="file" class="@error('thumbnail') is-invalid @enderror" name="thumbnail" id="thumbnail" onchange="previewImage()">
+                        <input type="file" class="form-control @error('thumbnail') is-invalid @enderror" name="thumbnail" id="thumbnail" onchange="previewImage()">
                         @error('thumbnail')
                         <div class="invalid-feedback">
                             {{ $message }}
