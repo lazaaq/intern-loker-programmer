@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post/create');
+        return view('dashboard/post/create');
     }
 
     /**
@@ -83,7 +83,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('post/edit', [
+        return view('dashboard/post/edit', [
             'post' => $post
         ]);
     }

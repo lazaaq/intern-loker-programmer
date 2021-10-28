@@ -14,31 +14,39 @@ class MyController extends Controller
             'active' => 'home'
         ]);
     }
-    public function post()
+    public function post(Request $request)
     {
-        return view('post', [
+        $posts = Post::where('judul', 'like', '%' . $request->judul . '%')->get();
+        return view('post/index', [
             'active' => 'post',
-            'posts' => Post::all()
+            'posts' => $posts,
+            's' => $request->judul
         ]);
     }
     public function single_post(Post $post)
     {
-        return view('single_post',[
+        return view('post/single_post',[
             'post' => $post,
             'author' => User::find($post->user_id),
             'active' => 'post'
         ]);
     }
+    public function search()
+    {
+        return view('post/search',[
+
+        ]);
+    }
     public function author()
     {
-        return view('author', [
+        return view('user/index', [
             'active' => 'author',
             'authors' => User::all()
         ]);
     }
     public function single_author(User $user)
     {
-        return view('single_author', [
+        return view('user/single_user', [
             'author' => $user,
             'posts' => Post::where('user_id', $user->id)->get(),
             'active' => 'author'

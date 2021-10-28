@@ -40,7 +40,7 @@
 <section class="my">
 	<div class="container">
 		<div class="judul">LANA SAIFUL AQIL</div>
-		<div class="subjudul">Inter Loker Programmer</div>
+		<div class="subjudul">Intern Loker Programmer</div>
 	</div>
 </section>
 @endsection
