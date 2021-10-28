@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [MyController::class, 'index']);
+Route::get('/', [MyController::class, 'index'])->name('home');
 Route::get('/post', [MyController::class, 'post']);
 Route::get('/post/{post:slug}', [MyController::class, 'single_post']);
 Route::get('/post/s', [MyController::class, 'search']);

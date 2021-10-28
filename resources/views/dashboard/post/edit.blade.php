@@ -85,7 +85,7 @@
                     <div class="mb-3">
                         <label for="thumbnail" class="form-label">Thumbnail Post</label>
                         <br>
-                        <img class="img-fluid mb-3 col-sm-5" id="imgPreview" src="{{$post->thumbnail}}">
+                        <img class="img-fluid mb-3 col-sm-5" id="imgPreview" src="{{asset($post->thumbnail)}}">
                         <input type="file" class="form-control @error('thumbnail') is-invalid @enderror" name="thumbnail" id="thumbnail" onchange="previewImage()">
                         @error('thumbnail')
                         <div class="invalid-feedback">

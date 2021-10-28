@@ -105,8 +105,11 @@ class PostController extends Controller
 
         $validatedData['slug'] = Str::of($validatedData['judul'])->slug('-');
 
-        if($request->hasFile('thumbnail')){
-            $validatedData['thumbnail'] = $request->file('thumbnail')->store('thumbnail');
+        if ($request->hasFile('thumbnail')) {
+            $file = $request->file('thumbnail');
+            $folder_tujuan = 'img/thumbnail';
+            $filename = time() . "_" . $file->getClientOriginalName();
+            $validatedData['thumbnail'] = $file->move($folder_tujuan, $filename);
             $post->update([
                 'thumbnail' => $validatedData['thumbnail']
             ]);

@@ -23,7 +23,7 @@
 	</div>
 	<div class="row justify-content-center">
 		@foreach($posts as $post)
-		<div class="col-sm-6 col-lg-4">
+		<div class="col-md-6 col-lg-4">
 			<div class="card">
 				<img src="{{asset($post->thumbnail)}}" class="card-img-top">
 				<div class="card-body">
