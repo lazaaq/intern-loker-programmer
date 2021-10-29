@@ -7,6 +7,10 @@
 	.container.content {
 		min-height: 70vh;
 	}
+	.content .card .title form button {
+		background-color: transparent;
+		border: 0;
+	}
 </style>
 @endsection
 
@@ -23,11 +27,22 @@
 	</div>
 	<div class="row justify-content-center">
 		@foreach($posts as $post)
-		<div class="col-md-6 col-lg-4">
+		<div class="col-md-6 col-lg-4 mb-3">
 			<div class="card">
 				<img src="{{asset($post->thumbnail)}}" class="card-img-top">
 				<div class="card-body">
-					<h5 class="card-title">{{$post->judul}}</h5>
+					<div class="title d-flex">
+						<h5 class="card-title">{{$post->judul}}</h5>
+						<div class="icon ms-auto">
+							<form action="/dashboard/liked" method="post">
+								@csrf
+								<input type="hidden" name="post_id" value="{{$post->id}}">
+								<button type="submit">
+									<i class="bi bi-heart"></i>
+								</button>
+							</form>
+						</div>
+					</div>
 					<div class="author">
 						<i class="bi bi-person-fill"></i>
 						<a href="#" class="text-dark">

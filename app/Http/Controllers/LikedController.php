@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Liked;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LikedController extends Controller
 {
@@ -14,7 +16,15 @@ class LikedController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $posts = Post::where('user_id', $user->id);
+        $liked = Liked::where('user_id', $user->id);
+        return view('liked/index',[
+            'active' => 'liked',
+            'user' => $user,
+            'posts' => $posts,
+            'liked' => $liked
+        ]);
     }
 
     /**
@@ -35,7 +45,12 @@ class LikedController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        Liked::create([
+            'user_id' => $user->id,
+            'post_id' => $request->post_id
+        ]);
+        return back();
     }
 
     /**
@@ -80,6 +95,7 @@ class LikedController extends Controller
      */
     public function destroy(Liked $liked)
     {
-        //
+        $liked->delete();
+        return back();
     }
 }
