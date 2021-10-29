@@ -5,18 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Komentar extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public function user()
+    public function post()
     {
-        return $this->belongsTo(User::class);
-    }
-    public function komentar()
-    {
-        return $this->hasMany(Komentar::class);
+        return $this->belongsTo(Post::class);
     }
 }

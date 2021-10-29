@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Komentar;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,7 +29,8 @@ class MyController extends Controller
         return view('post/single_post',[
             'post' => $post,
             'author' => User::find($post->user_id),
-            'active' => 'post'
+            'active' => 'post',
+            'komentars' => Komentar::where('post_id', $post->id)->latest()->get()
         ]);
     }
     public function author(Request $request)

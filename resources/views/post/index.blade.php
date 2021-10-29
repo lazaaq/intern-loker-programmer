@@ -7,7 +7,16 @@
 	.container.content {
 		min-height: 70vh;
 	}
-	.content .card .title form button {
+
+	.content .card .card-title a {
+		color: black;
+		text-decoration: none;
+	}
+	.content .card .card-title a:hover {
+		color: grey;
+		transition: 0.2s;
+	}
+	.content .card form button {
 		background-color: transparent;
 		border: 0;
 	}
@@ -27,29 +36,33 @@
 	</div>
 	<div class="row justify-content-center">
 		@foreach($posts as $post)
-		<div class="col-md-6 col-lg-4 mb-3">
+		<div class="col-md-4">
 			<div class="card">
-				<img src="{{asset($post->thumbnail)}}" class="card-img-top">
-				<div class="card-body">
-					<div class="title d-flex">
-						<h5 class="card-title">{{$post->judul}}</h5>
-						<div class="icon ms-auto">
-							<form action="/dashboard/liked" method="post">
-								@csrf
-								<input type="hidden" name="post_id" value="{{$post->id}}">
-								<button type="submit">
-									<i class="bi bi-heart"></i>
-								</button>
-							</form>
+				<a href="/post/{{$post->slug}}">
+					<img class="img-fluid img-thumb" src="{{asset($post->thumbnail)}}">
+				</a>
+				<div class="card-block">
+					<h2 class="card-title"><a href="/post/{{ $post->slug }}">{{ $post->judul  }}</a></h2>
+					<div class="metafooter">
+						<div class="wrapfooter">
+							<span class="meta-footer-thumb">
+								<a href="/author/{{ $post->user->id }}"><img class="author-thumb" src="{{ $post->user->photo  }}"></a>
+							</span>
+							<span class="author-meta">
+								<span class="post-name"><a href="/author/{{ $post->user->id }}">{{ $post->user->name }}</a></span><br />
+								<span class="post-date">{{$post->updated_at}}</span><span class="dot"></span>
+							</span>
+							<span class="post-read-more">
+								<form action="/dashboard/liked" method="post">
+									@csrf
+									<input type="hidden" name="post_id" value="{{$post->id}}">
+									<button type="submit">
+										<i class="bi bi-heart"></i>
+									</button>
+								</form>
+							</span>
 						</div>
 					</div>
-					<div class="author">
-						<i class="bi bi-person-fill"></i>
-						<a href="#" class="text-dark">
-							{{ $post->user->name }}
-						</a>
-					</div>
-					<a href="/post/{{$post->slug}}" class="btn btn-primary mt-2">Read More</a>
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\LikedController;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\PostController;
@@ -30,6 +31,8 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('/dashboard/post', PostController::class);
 
     Route::resource('/dashboard/liked', LikedController::class)->only(['index', 'store', 'destroy']);
+
+    Route::resource('/dashboard/komentar', KomentarController::class)->only(['store', 'destroy']);
 });
 
 require __DIR__.'/auth.php';
