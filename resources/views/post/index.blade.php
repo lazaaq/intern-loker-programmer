@@ -12,10 +12,12 @@
 		color: black;
 		text-decoration: none;
 	}
+
 	.content .card .card-title a:hover {
 		color: grey;
 		transition: 0.2s;
 	}
+
 	.content .card form button {
 		background-color: transparent;
 		border: 0;
@@ -53,6 +55,16 @@
 								<span class="post-date">{{$post->updated_at}}</span><span class="dot"></span>
 							</span>
 							<span class="post-read-more">
+								@if($post->liked_by_user)
+								<form action="/dashboard/liked/1" method="post">
+									@csrf
+									@method('DELETE')
+									<input type="hidden" name="post_id" value="{{$post->id}}">
+									<button type="submit">
+										<i class="bi bi-heart-fill"></i>
+									</button>
+								</form>
+								@else
 								<form action="/dashboard/liked" method="post">
 									@csrf
 									<input type="hidden" name="post_id" value="{{$post->id}}">
@@ -60,6 +72,7 @@
 										<i class="bi bi-heart"></i>
 									</button>
 								</form>
+								@endif
 							</span>
 						</div>
 					</div>

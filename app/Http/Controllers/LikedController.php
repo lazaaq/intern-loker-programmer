@@ -17,13 +17,11 @@ class LikedController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $posts = Post::where('user_id', $user->id);
-        $liked = Liked::where('user_id', $user->id);
-        return view('liked/index',[
+        $liked = Liked::with('post')->where('user_id', $user->id)->get();
+        return view('dashboard/liked/index',[
             'active' => 'liked',
             'user' => $user,
-            'posts' => $posts,
-            'liked' => $liked
+            'likeds' => $liked
         ]);
     }
 
@@ -93,8 +91,10 @@ class LikedController extends Controller
      * @param  \App\Models\Liked  $liked
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Liked $liked)
+    public function destroy(Request $request)
     {
+        $user = Auth::user();
+        $liked = Liked::where('user_id', $user->id)->where('post_id', $request->post_id);
         $liked->delete();
         return back();
     }

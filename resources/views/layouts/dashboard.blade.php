@@ -32,7 +32,7 @@
                     <div class="flex">
                         <!-- Logo -->
                         <div class="flex-shrink-0 flex items-center">
-                            <a href="{{ route('dashboard') }}">
+                            <a href="/">
                                 <img src="/img/logo/brand-zoom.png" alt="Brand Logo" width="50px">
                             </a>
                         </div>

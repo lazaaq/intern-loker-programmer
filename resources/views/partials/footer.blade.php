@@ -2,7 +2,7 @@
 	================================================== -->
 <div class="footer container">
     <p class="pull-left">
-        Copyright &copy; 2017 Postify
+        Copyright &copy; 2021 Postify
     </p>
     <p class="pull-right">
         Powered by Lana Saiful Aqil

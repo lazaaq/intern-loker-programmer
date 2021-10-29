@@ -10,8 +10,13 @@
 		padding: 1rem 0;
 		border-radius: 0.5rem;
 	}
+
 	.komentar .box .tanggal {
 		font-size: 0.8rem;
+	}
+	.like form button {
+		border: 0;
+		background-color: transparent;
 	}
 </style>
 @endsection
@@ -102,16 +107,35 @@
 				{!! $post->body !!}
 			</div>
 			<!-- End Post Content -->
-
-
+			<div class="like mt-3">
+				@if($post->liked_by_user)
+				<form action="/dashboard/liked/1" method="post">
+					@csrf
+					@method('DELETE')
+					<input type="hidden" name="post_id" value="{{$post->id}}">
+					<button type="submit">
+						<i class="bi bi-heart-fill"></i>
+						Like
+					</button>
+				</form>
+				@else
+				<form action="/dashboard/liked" method="post">
+					@csrf
+					<input type="hidden" name="post_id" value="{{$post->id}}">
+					<button type="submit">
+						<i class="bi bi-heart"></i>
+						Liked
+					</button>
+				</form>
+				@endif
+			</div>
+			<hr>
 		</div>
 		<!-- End Post -->
-
 	</div>
 </div>
 <!-- End Article
 ================================================== -->
-
 <section class="komentar mt-5">
 	<div class="container col-md-7">
 		<form action="{{route('komentar.store')}}" method="post">
@@ -119,7 +143,7 @@
 			<input type="hidden" name="post_id" value="{{$post->id}}">
 			<div class="mb-3">
 				<label for="body" class="form-label fs-4" style="font-weight: 600;">KOMENTAR</label>
-				<textarea class="form-control" id="body" name="body" rows="3"></textarea>
+				<textarea class="form-control" id="body" name="body" rows="3" placeholder="Masukkan Komentar.."></textarea>
 			</div>
 			<div class="tombol">
 				<button type="submit" class="btn btn-success">Submit</button>
@@ -128,15 +152,22 @@
 		@foreach($komentars as $komentar)
 		<div class="row mt-4 box">
 			<div class="col-md-1">
-				@if($komentar->user != null)
-				<img src="{{$komentar->user->photo}}" class="rounded-circle" width="50px">
-				@else
-				<img src="/img/people/default.jpg" class="rounded-circle" width="50px">
-				@endif
+				<a href="/author/{{$komentar->user->id}}">
+					@if($komentar->user != null)
+					<img src="{{$komentar->user->photo}}" class="rounded-circle" width="50px">
+					@else
+					<img src="/img/people/default.jpg" class="rounded-circle" width="50px">
+					@endif
+				</a>
 			</div>
 			<div class="col-md-10">
+				<div class="user">
+					<a href="/author/{{$komentar->user->id}}" style="text-decoration: none; color:white" class="text-info">
+						{{ $komentar->user->name }}
+					</a>
+				</div>
 				<div class="body">
-				{{ $komentar->body }}
+					{{ $komentar->body }}
 				</div>
 				<div class="tanggal">
 					{{ $komentar->updated_at }}

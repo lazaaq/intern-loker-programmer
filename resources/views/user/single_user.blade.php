@@ -8,9 +8,10 @@
         background-color: transparent;
         border: 0;
     }
-    @media only screen and (max-width:768px){
+
+    @media only screen and (max-width:768px) {
         .container .mainheading .image {
-            display: none!important;
+            display: none !important;
         }
     }
 </style>
@@ -62,9 +63,6 @@
                             <h2 class="card-title">
                                 <a href="/post/{{$post->slug}}">{{$post->judul}}</a>
                             </h2>
-                            <h4 class="card-text">
-                                {!! $post->body !!}
-                            </h4>
                             <div class="metafooter">
                                 <div class="wrapfooter">
                                     <span class="meta-footer-thumb">
@@ -81,12 +79,24 @@
                                         <span class="post-date">{{$post->updated_at}}</span><span class="dot"></span>
                                     </span>
                                     <span class="post-read-more">
-                                        <form action="{{route('liked.store')}}" method="post">
+                                        @if($post->liked_by_user)
+                                        <form action="/dashboard/liked/1" method="post">
                                             @csrf
-                                            <button type="submit" class="like_button">
+                                            @method('DELETE')
+                                            <input type="hidden" name="post_id" value="{{$post->id}}">
+                                            <button type="submit">
+                                                <i class="bi bi-heart-fill"></i>
+                                            </button>
+                                        </form>
+                                        @else
+                                        <form action="/dashboard/liked" method="post">
+                                            @csrf
+                                            <input type="hidden" name="post_id" value="{{$post->id}}">
+                                            <button type="submit">
                                                 <i class="bi bi-heart"></i>
                                             </button>
                                         </form>
+                                        @endif
                                     </span>
                                 </div>
                             </div>

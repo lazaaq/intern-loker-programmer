@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Komentar;
+use App\Models\Liked;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -133,6 +135,8 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         File::delete($post->thumbnail);
+        $liked = Liked::where('post_id', $post->id)->delete();
+        $komentar = Komentar::where('post_id', $post->id)->delete();
         $post->delete();
         return redirect('/dashboard')->with('success_deleted', 'Post berhasil dihapus!');
     }
