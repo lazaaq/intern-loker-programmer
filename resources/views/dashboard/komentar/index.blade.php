@@ -13,48 +13,12 @@
         display: flex;
         align-items: center;
     }
-
-    .content .box .judul {
-        font-weight: 700;
-        font-size: 1.5rem;
-        text-decoration: underline;
-    }
-
-    .content .box .kanan {
-        display: flex;
-        align-items: flex-start;
-    }
-
-    .content .wrap-kanan a {
-        color: black;
-    }
-
-    .content .wrap-kanan button {
-        color: black;
-        text-decoration: underline;
-    }
-
-    .content .post-judul {
-        color: black;
-    }
-
-    .content .post-judul:hover {
-        color: #545F66;
-        transition: 0.3s;
-    }
-
-    .content .author_link:hover {
-        background-color: #c4c4c4!important;
-        padding: 5px 5px;
-        transition: 0.3s;
-        border-radius: 0.5rem;
-    }
 </style>
 @endsection
 
 @section('heading')
 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-    {{ $user->name }}'s Liked Posts
+    {{ $user->name }}'s Komentar Posts
 </h2>
 @endsection
 
@@ -75,37 +39,35 @@
                         <input type="text" name="search" id="search" class="form-control" placeholder="Search Postingan">
                     </form>
                 </div>
-                @foreach($likeds as $liked)
+                @foreach($komentars as $komentar)
                 <div class="box">
                     <div class="d-flex align-items-center w-100">
                         <div class="gambar">
-                            <a href="/author/{{ $liked->user->id }}">
-                                <img src="{{ asset($liked->user->photo) }}" alt="" width="50px" class="rounded-circle">
-                            </a>
+                            <img src="{{ asset($komentar->user->photo) }}" alt="" width="50px" class="rounded-circle">
                         </div>
                         <div class="ms-3 d-block">
-                            <a class="mb-0 text-dark d-block text-decoration-none" href="/post/{{ $liked->post->slug }}">
-                                {{ $liked->post->judul }}
-                            </a>
-                            <a class="mb-0 text-primary d-block text-decoration-none" style="font-size: 0.8rem" href="/author/{{ $liked->user->id }}">
-                                {{ $liked->user->name }}
-                            </a>
+                            <p class="mb-0 text-primary">
+                                {{ $komentar->user->name }}
+                            </p>
+                            <p class="mb-0 text-dark">
+                                {{ $komentar->body }}
+                            </p>
                         </div>
                         <div class="ms-auto">
-                            <a href="/post/{{ $liked->post->slug }}" class="btn btn-info text-light">
+                            <a href="/post/{{ $komentar->post->slug }}" class="btn btn-info text-light">
                                 <i class="bi bi-eye"></i>
                             </a>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-danger d-inline-block" data-bs-toggle="modal" data-bs-target="#hapus_{{ $liked->id }}">
+                            <button type="button" class="btn btn-danger d-inline-block" data-bs-toggle="modal" data-bs-target="#hapus_{{ $komentar->id }}">
                                 <i class="bi bi-trash"></i>
                             </button>
                             
                             <!-- Modal -->
-                            <div class="modal fade" id="hapus_{{ $liked->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="hapus_{{ $komentar->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title text-dark" id="exampleModalLabel">Hapus Like</h5>
+                                            <h5 class="modal-title text-dark" id="exampleModalLabel">Hapus Komentar</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body text-dark">
@@ -113,7 +75,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <form action="{{ route('liked.destroy', $liked->id) }}" method="post" class="d-inline-block">
+                                            <form action="{{ route('komentar.destroy', $komentar->id) }}" method="post" class="d-inline-block">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">
@@ -124,6 +86,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

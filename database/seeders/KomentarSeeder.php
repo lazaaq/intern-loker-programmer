@@ -13,6 +13,6 @@ class KomentarSeeder extends Seeder
      */
     public function run()
     {
-        //
+        
     }
 }

@@ -45,6 +45,9 @@
                             <x-nav-link :href="route('liked.index')" :active="request()->routeIs('liked.index')">
                                 Liked Post
                             </x-nav-link>
+                            <x-nav-link :href="route('komentar.index')" :active="request()->routeIs('komentar.index')">
+                                Komentar Post
+                            </x-nav-link>
                         </div>
                     </div>
 

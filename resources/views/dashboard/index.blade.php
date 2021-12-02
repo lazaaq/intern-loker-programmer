@@ -5,7 +5,7 @@
 @section('css')
 <style>
     .content .box {
-        background-color: #242424;
+        background-color: #e4e4e4;
         padding: 1rem;
         border-radius: 6px;
         margin: 5px 0;
@@ -35,11 +35,11 @@
     }
 
     .content .post-judul {
-        color: white;
+        color: black;
     }
 
     .content .post-judul:hover {
-        color: lightblue;
+        color: #545F66;
         transition: 0.3s;
     }
 </style>
@@ -56,18 +56,30 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
-                <a href="{{route('post.create')}}" class="btn btn-primary mb-4">Buat Artikel Baru</a>
+                <div class="d-flex w-100 mb-3">
+                    <a href="{{route('post.create')}}" class="btn btn-primary">Buat Artikel Baru</a>
+                    <form action="" method="post" class="ms-auto" style="width: fit-content">
+                        @csrf
+                        <input type="text" name="search" id="search" class="form-control" placeholder="Search Postingan">
+                    </form>
+                </div>
                 @foreach($posts as $post)
                 <div class="box">
                     <div class="kiri pe-3">
                         <div class="judul">
                             <a href="/post/{{ $post->slug }}" class="post-judul">{{$post->judul}}</a>
                         </div>
+                        <div class="timestamps">
+                            <p style="font-size: 0.8rem; margin-bottom:0;" class="text-dark">Terakhir diedit {{ $post->updated_at }}</p>
+                        </div>
                     </div>
                     <div class="kanan ms-auto mb-auto">
                         <div class="wrap-kanan d-flex">
-                            <a href="{{route('post.edit', $post->id)}}" class="btn btn-success me-2">
-                                <i class="bi bi-pencil-square"></i>
+                            <a href="/post/{{ $post->slug }}" class="btn btn-info me-2">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="{{route('post.edit', $post->id)}}" class="btn btn-warning me-2">
+                                <i class="bi bi-pencil-square text-dark"></i>
                             </a>
                             <form action="{{route('post.destroy', $post->id)}}" method="post" class="mb-0">
                                 @csrf

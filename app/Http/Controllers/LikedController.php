@@ -96,6 +96,7 @@ class LikedController extends Controller
         $user = Auth::user();
         $liked = Liked::where('user_id', $user->id)->where('post_id', $request->post_id);
         $liked->delete();
+        dd($liked);
         return back();
     }
 }

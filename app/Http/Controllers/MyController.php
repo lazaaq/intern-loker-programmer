@@ -51,7 +51,7 @@ class MyController extends Controller
         return view('post/index', [
             'active' => 'post',
             'posts' => $posts,
-            's' => $request->judul
+            's' => $request->judul,
         ]);
     }
     public function single_post(Post $post)

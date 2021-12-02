@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::resource('/dashboard/liked', LikedController::class)->only(['index', 'store', 'destroy']);
 
-    Route::resource('/dashboard/komentar', KomentarController::class)->only(['store', 'destroy']);
+    Route::resource('/dashboard/komentar', KomentarController::class)->only(['index', 'store', 'destroy']);
 });
 
 require __DIR__.'/auth.php';

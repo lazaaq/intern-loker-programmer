@@ -15,7 +15,13 @@ class KomentarController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $komentar = Komentar::with('post', 'user')->where('user_id', $user->id)->get();
+        return view('dashboard/komentar/index',[
+            'active' => 'komentar',
+            'user' => $user,
+            'komentars' => $komentar
+        ]);
     }
 
     /**
@@ -85,8 +91,10 @@ class KomentarController extends Controller
      * @param  \App\Models\Komentar  $komentar
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Komentar $komentar)
+    public function destroy($id)
     {
-        //
+        $komentar = Komentar::find($id);
+        $komentar->delete();
+        return redirect('/dashboard/komentar')->with('success', 'Berhasil menghapus komentar');
     }
 }
