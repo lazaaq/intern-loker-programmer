@@ -43,10 +43,13 @@
                                 {{ __('Dashboard') }}
                             </x-nav-link>
                             <x-nav-link :href="route('liked.index')" :active="request()->routeIs('liked.index')">
-                                Liked Post
+                                Liked Posts
                             </x-nav-link>
                             <x-nav-link :href="route('komentar.index')" :active="request()->routeIs('komentar.index')">
-                                Komentar Post
+                                Komentar Posts
+                            </x-nav-link>
+                            <x-nav-link :href="route('profil.index')" :active="request()->routeIs('profil.index')">
+                                Profil
                             </x-nav-link>
                         </div>
                     </div>
@@ -108,7 +111,10 @@
                         Liked Posts
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('komentar.index')" :active="request()->routeIs('komentar.index')">
-                        Komentar
+                        Komentar Posts
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('profil.index')" :active="request()->routeIs('profil.index')">
+                        Profil
                     </x-responsive-nav-link>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf

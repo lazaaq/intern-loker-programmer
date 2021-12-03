@@ -5,7 +5,7 @@ use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\LikedController;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\SavedController;
+use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +33,9 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('/dashboard/liked', LikedController::class)->only(['index', 'store', 'destroy']);
 
     Route::resource('/dashboard/komentar', KomentarController::class)->only(['index', 'store', 'destroy']);
+
+    Route::resource('/dashboard/profil', ProfilController::class)->only(['index', 'edit', 'update']);
+    Route::post('/dashboard/profil/remove_photo', [ProfilController::class, 'remove_photo'])->name('profil.remove_photo');
 });
 
 require __DIR__.'/auth.php';
