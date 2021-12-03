@@ -57,14 +57,16 @@
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 <div class="d-flex w-100 mb-3">
-                    <a href="{{route('post.create')}}" class="btn btn-primary">Buat Artikel Baru</a>
-                    <form action="" method="post" class="ms-auto" style="width: fit-content">
-                        @csrf
-                        <input type="text" name="search" id="search" class="form-control" placeholder="Search Postingan">
+                    <a href="{{route('post.create')}}" class="btn btn-primary mb-0">Buat Artikel Baru</a>
+                    <form action="" method="get" class="d-inline-block ms-auto d-flex">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search Postingan" name="search" id="search" value="{{ $search }}">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </div>
                     </form>
                 </div>
                 @foreach($posts as $post)
-                <div class="box">
+                <div class="box {{ $post->judul }}">
                     <div class="kiri pe-3">
                         <div class="judul">
                             <a href="/post/{{ $post->slug }}" class="post-judul">{{$post->judul}}</a>
@@ -99,5 +101,4 @@
 @endsection
 
 @section('js')
-
 @endsection

@@ -14,7 +14,7 @@ class LikedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
         $liked = Liked::with('post')->where('user_id', $user->id)->get();
@@ -96,7 +96,6 @@ class LikedController extends Controller
         $user = Auth::user();
         $liked = Liked::where('user_id', $user->id)->where('post_id', $request->post_id);
         $liked->delete();
-        dd($liked);
         return back();
     }
 }

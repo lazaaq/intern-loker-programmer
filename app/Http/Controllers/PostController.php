@@ -44,7 +44,7 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'judul' => 'required',
             'body' => 'required',
-            'thumbnail' => 'required|image'
+            'thumbnail' => 'required|image|mime:jpg,png,jpeg,jfif'
         ]);
 
         $validatedData['slug'] = Str::of($validatedData['judul'])->slug('-');

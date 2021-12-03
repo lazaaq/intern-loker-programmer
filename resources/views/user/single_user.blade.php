@@ -92,7 +92,7 @@
                                         <form action="/dashboard/liked" method="post">
                                             @csrf
                                             <input type="hidden" name="post_id" value="{{$post->id}}">
-                                            <button type="submit">
+                                            <button type="submit" class="border-0 bg-transparent">
                                                 <i class="bi bi-heart"></i>
                                             </button>
                                         </form>

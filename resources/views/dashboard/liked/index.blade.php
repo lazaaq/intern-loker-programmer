@@ -69,12 +69,6 @@
         @endif
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
-                <div class="d-flex w-100 mb-3">
-                    <form action="" method="post" class="ms-auto" style="width: fit-content">
-                        @csrf
-                        <input type="text" name="search" id="search" class="form-control" placeholder="Search Postingan">
-                    </form>
-                </div>
                 @foreach($likeds as $liked)
                 <div class="box">
                     <div class="d-flex align-items-center w-100">

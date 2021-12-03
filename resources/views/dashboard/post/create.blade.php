@@ -71,6 +71,7 @@
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 <form action="{{route('post.store')}}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="mb-3">
                         <label for="judul" class="form-label">Judul Post</label>
                         <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" placeholder="Hello World">
@@ -101,8 +102,6 @@
                         @enderror
                     </div>
                     <div class="tombol">
-
-                        @csrf
                         <button type="submit" class="btn btn-info">Publish</button>
                     </div>
                 </form>

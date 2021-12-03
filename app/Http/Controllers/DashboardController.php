@@ -8,12 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
+        $search = $request->input('search');
         return view('dashboard/index', [
-            'posts' => Post::where('user_id', $user->id)->get(),
-            'user' => $user
+            'posts' => Post::where('user_id', $user->id)->where('judul', 'like', '%' . $search . '%')->get(),
+            'user' => $user,
+            'search' => $search
         ]);
     }
 }

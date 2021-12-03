@@ -33,24 +33,18 @@
         @endif
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
-                <div class="d-flex w-100 mb-3">
-                    <form action="" method="post" class="ms-auto" style="width: fit-content">
-                        @csrf
-                        <input type="text" name="search" id="search" class="form-control" placeholder="Search Postingan">
-                    </form>
-                </div>
                 @foreach($komentars as $komentar)
                 <div class="box">
-                    <div class="d-flex align-items-center w-100">
+                    <div class="d-flex w-100">
                         <div class="gambar">
-                            <img src="{{ asset($komentar->user->photo) }}" alt="" width="50px" class="rounded-circle">
+                            <img src="{{ asset($komentar->user->photo) }}" alt="Photo" width="50px" class="rounded-circle d-none d-lg-block">
                         </div>
-                        <div class="ms-3 d-block">
+                        <div class="ms-3 d-block" style="max-width: 80%">
                             <p class="mb-0 text-primary">
-                                {{ $komentar->user->name }}
+                                {{ $komentar->user->name }} (You)
                             </p>
                             <p class="mb-0 text-dark">
-                                {{ $komentar->body }}
+                                {{ $komentar->body }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, cum veritatis dolorem blanditiis similique enim omnis esse inventore animi dolor in praesentium temporibus tempora libero provident aut id recusandae accusantium? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel, cum. Minus ipsam harum rerum quae adipisci ut, voluptates aperiam amet distinctio doloribus aspernatur earum explicabo praesentium quia dolores, quaerat laborum?
                             </p>
                         </div>
                         <div class="ms-auto">
@@ -86,7 +80,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
