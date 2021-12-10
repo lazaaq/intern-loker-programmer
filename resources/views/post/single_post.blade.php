@@ -114,6 +114,7 @@
 					@method('DELETE')
 					<input type="hidden" name="post_id" value="{{$post->id}}">
 					<button type="submit">
+						{{ $post->like }}
 						<i class="bi bi-heart-fill"></i>
 						Liked
 					</button>
@@ -123,6 +124,7 @@
 					@csrf
 					<input type="hidden" name="post_id" value="{{$post->id}}">
 					<button type="submit">
+						{{ $post->like }}
 						<i class="bi bi-heart"></i>
 						Like
 					</button>
@@ -138,11 +140,11 @@
 ================================================== -->
 <section class="komentar mt-5">
 	<div class="container col-md-7">
-		<form action="{{route('komentar.store')}}" method="post">
+		<form action="{{route('komentar.store')}}" method="post" class="mb-5">
 			@csrf
 			<input type="hidden" name="post_id" value="{{$post->id}}">
 			<div class="mb-3">
-				<label for="body" class="form-label fs-4" style="font-weight: 600;">KOMENTAR</label>
+				<label for="body" class="form-label fs-4" style="font-weight: 600;">KOMENTAR ({{ $post->komentar }})</label>
 				<textarea class="form-control" id="body" name="body" rows="3" placeholder="Masukkan Komentar.."></textarea>
 			</div>
 			<div class="tombol">
@@ -150,7 +152,7 @@
 			</div>
 		</form>
 		@foreach($komentars as $komentar)
-		<div class="row mt-4 box">
+		<div class="row mt-1 box">
 			<div class="col-md-1">
 				<a href="/author/{{$komentar->user->id}}">
 					@if($komentar->user != null)
@@ -165,12 +167,12 @@
 					<a href="/author/{{$komentar->user->id}}" style="text-decoration: none; color:white" class="text-info">
 						{{ $komentar->user->name }}
 					</a>
+					<span class="" style="font-size: 0.8rem">
+						{{ $komentar->updated_at }}
+					</span>
 				</div>
 				<div class="body">
 					{{ $komentar->body }}
-				</div>
-				<div class="tanggal">
-					{{ $komentar->updated_at }}
 				</div>
 			</div>
 		</div>

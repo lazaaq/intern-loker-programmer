@@ -28,7 +28,9 @@ class DatabaseSeeder extends Seeder
             'judul' => 'Hello World',
             'slug' => 'hello-world',
             'body' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci corrupti quod, consectetur assumenda consequuntur repudiandae eveniet iste fuga perferendis aut, quia culpa vel sint quas natus quis, expedita sapiente temporibus!",
-            'thumbnail' => '/img/thumbnail/hello_world.jpg'
+            'thumbnail' => '/img/thumbnail/hello_world.jpg',
+            'like' => '0',
+            'komentar' => '0'
         ]);
     }
 }

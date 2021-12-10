@@ -29,6 +29,24 @@
                     <div class="col-md-10 col-xs-12">
                         <h1>{{$author->name}}</h1>
                         <span class="author-description">{{$author->description}}</span>
+                        <span class="author-description">
+                            Email : {{ $author->email }}
+                        </span><br>
+                        @if($author->alamat != NULL)
+                        <span class="author-description">
+                            Alamat : {{ $author->alamat }}
+                        </span><br>
+                        @endif
+                        @if($author->no_hp != NULL)
+                        <span class="author-description">
+                            Nomor Handphone : {{ $author->no_hp }}
+                        </span><br>
+                        @endif
+                        @if($author->institusi != NULL)
+                        <span class="author-description">
+                            Institusi : {{ $author->institusi }}
+                        </span>
+                        @endif
                         <div class="sociallinks"><a target="_blank" href="https://www.facebook.com/wowthemesnet/"><i class="fa fa-facebook"></i></a> <span class="dot"></span> <a target="_blank" href="https://plus.google.com/s/wowthemesnet/top"><i class="fa fa-google-plus"></i></a></div>
                     </div>
                     <div class="col-md-2 col-xs-12 d-flex align-items-start image">
@@ -38,6 +56,7 @@
                         <img class="rounded-circle" src="/img/people/default.jpg" width="100px">
                         @endif
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -84,8 +103,9 @@
                                             @csrf
                                             @method('DELETE')
                                             <input type="hidden" name="post_id" value="{{$post->id}}">
-                                            <button type="submit">
+                                            <button type="submit" class="border-0 bg-transparent">
                                                 <i class="bi bi-heart-fill"></i>
+                                                {{ $post->like }}
                                             </button>
                                         </form>
                                         @else
@@ -94,6 +114,7 @@
                                             <input type="hidden" name="post_id" value="{{$post->id}}">
                                             <button type="submit" class="border-0 bg-transparent">
                                                 <i class="bi bi-heart"></i>
+                                                {{ $post->like }}
                                             </button>
                                         </form>
                                         @endif

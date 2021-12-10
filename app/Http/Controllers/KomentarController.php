@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Komentar;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,6 +49,11 @@ class KomentarController extends Controller
         ]);
         $validatedData['user_id'] = Auth::user()->id;
         Komentar::create($validatedData);
+        $post = Post::find($request->post_id);
+        $komentar_post = $post->komentar;
+        $post->update([
+            'komentar' => $komentar_post + 1
+        ]);
         return back();
     }
 
@@ -94,7 +100,12 @@ class KomentarController extends Controller
     public function destroy($id)
     {
         $komentar = Komentar::find($id);
+        $post = Post::find($komentar->post_id);
         $komentar->delete();
+        $komentar_post = $post->komentar;
+        $post->update([
+            'komentar' => $komentar_post - 1
+        ]);
         return redirect('/dashboard/komentar')->with('success', 'Berhasil menghapus komentar');
     }
 }

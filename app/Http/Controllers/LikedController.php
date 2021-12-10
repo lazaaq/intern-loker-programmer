@@ -48,6 +48,11 @@ class LikedController extends Controller
             'user_id' => $user->id,
             'post_id' => $request->post_id
         ]);
+        $post = Post::find($request->post_id);
+        $like_post = $post->like;
+        $post->update([
+            'like' => $like_post + 1
+        ]);
         return back();
     }
 
@@ -96,6 +101,11 @@ class LikedController extends Controller
         $user = Auth::user();
         $liked = Liked::where('user_id', $user->id)->where('post_id', $request->post_id);
         $liked->delete();
+        $post = Post::find($request->post_id);
+        $like_post = $post->like;
+        $post->update([
+            'like' => $like_post - 1
+        ]);
         return back();
     }
 }

@@ -62,6 +62,7 @@
 									<input type="hidden" name="post_id" value="{{$post->id}}">
 									<button type="submit">
 										<i class="bi bi-heart-fill"></i>
+										{{ $post->like }}
 									</button>
 								</form>
 								@else
@@ -70,6 +71,7 @@
 									<input type="hidden" name="post_id" value="{{$post->id}}">
 									<button type="submit">
 										<i class="bi bi-heart"></i>
+										{{ $post->like }}
 									</button>
 								</form>
 								@endif

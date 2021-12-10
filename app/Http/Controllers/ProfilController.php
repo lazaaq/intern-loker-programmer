@@ -119,10 +119,10 @@ class ProfilController extends Controller
     public function remove_photo(Request $request)
     {
         $user = User::find($request->user_id);
-        if($user->photo != 'img/people/default.jpg'){
+        if($user->photo != '/img/people/default.jpg'){
             File::delete($user->photo);
             $user->update([
-                'photo' => 'img/people/default.jpg'
+                'photo' => '/img/people/default.jpg'
             ]);
         }
         return redirect('/dashboard/profil');

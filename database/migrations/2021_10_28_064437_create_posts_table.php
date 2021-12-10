@@ -20,6 +20,8 @@ class CreatePostsTable extends Migration
             $table->string('slug');
             $table->text('body');
             $table->string('thumbnail');
+            $table->string('like');
+            $table->string('komentar');
             $table->timestamps();
         });
     }

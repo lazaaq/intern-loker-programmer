@@ -44,7 +44,7 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'judul' => 'required',
             'body' => 'required',
-            'thumbnail' => 'required|image|mime:jpg,png,jpeg,jfif'
+            'thumbnail' => 'required|image'
         ]);
 
         $validatedData['slug'] = Str::of($validatedData['judul'])->slug('-');
@@ -62,6 +62,8 @@ class PostController extends Controller
             'slug' => $validatedData['slug'],
             'body' => $validatedData['body'],
             'thumbnail' => $validatedData['thumbnail'],
+            'like' => '0',
+            'komentar' => '0'
         ]);
         return redirect('/dashboard')->with('success_added', 'Post baru berhasil dipublish!');
     }
